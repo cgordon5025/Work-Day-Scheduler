@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
   <title>Work Day Scheduler</title>
 </head>
 
@@ -21,8 +21,55 @@
   </header>
   <div class="container">
     <p id="todayDate" class="text-center"></p>
+    <section id="hours">
+      <section class="row min-vh-50">
+        <p class="p-1 hour">9AM</p>
+        <input class="col min-vw-6 time-block" placeholder="some chore" id="9amEvent" />
+        <button class="saveBtn" id="save9">Save</button>
+      </section>
+      <section class="row min-vh-50">
+        <p class="p-1 hour">10AM</p>
+        <input class="col min-vw-6 time-block" placeholder="some chore" id="10amEvent" />
+        <button class="saveBtn">Save</button>
+      </section>
+      <section class="row min-vh-50">
+        <p class="p-1 hour" class="hour">11AM</p>
+        <input class="col min-vw-6 time-block" placeholder="some chore" id="11amEvent" />
+        <button class="saveBtn">Save</button>
+      </section>
+      <!-- <section class="row min-vh-50">
+        <p class="p-1">12PM</p>
+        <input class="col min-vw-6" placeholder="some chore" id="12pmEvent" />
+        <button>Save</button>
+      </section>
+      <section class="row min-vh-50">
+        <p class="p-1">1PM</p>
+        <input class="col min-vw-6" placeholder="some chore" id="1pmEvent" />
+        <button>Save</button>
+      </section>
+      <section class="row min-vh-50">
+        <p class="p-1">2PM</p>
+        <input class="col min-vw-6" placeholder="some chore" id="2pmEvent" />
+        <button>Save</button>
+      </section>
+      <section class="row min-vh-50">
+        <p class="p-1">3PM</p>
+        <input class="col min-vw-6" placeholder="some chore" id="3pmEvent" />
+        <button>Save</button>
+      </section>
+      <section class="row min-vh-50">
+        <p class="p-1">4PM</p>
+        <input class="col min-vw-6" placeholder="some chore" id="4pmEvent" />
+        <button>Save</button>
+      </section>
+      <section class="row min-vh-50">
+        <p class="p-1">5PM</p>
+        <input class="col min-vw-6" placeholder="some chore" id="5pmEvent" />
+        <button>Save</button>
+      </section> -->
+    </section>
   </div>
-  
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
