@@ -10,6 +10,8 @@ The items within in schedule will change color based upon time (red, if it has p
 
 ![Mock up of Website](./assets/images/mock-up.png)
 ## Credits
+https://stackoverflow.com/questions/195951/how-can-i-change-an-elements-class-with-javascript
+Used this is switch classed based upon time
 
 ## License
 N/A
