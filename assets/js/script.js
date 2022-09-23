@@ -39,7 +39,11 @@ var saveBtnEl = $("#scheduleContainer")
 //now we are looking for a single click on any button
 saveBtnEl.on("click", "button", saveEvent)
 //we create an empty array with the length of 9
-var mySavedItems = Array(9);
+if (!localStorage.getItem("mySavedEvents")) {
+    var savedEvents = ['', '', '', '', '', '', '', '', '']
+} else {
+    var savedEvents = JSON.parse(localStorage.getItem("mySavedEvents"))
+}
 function saveEvent(event) {
     event.preventDefault()
     //now we prevent default and the new variable newInput will reference the previousElementSibling of pressed button
@@ -47,54 +51,53 @@ function saveEvent(event) {
     // now we want to use switch to determine what the data-num was, and log the input in the aprorpriate cell of the array
     switch (newInput.dataset.num) {
         case "1":
-            mySavedItems[0] = newInput.value;
+            savedEvents[0] = newInput.value;
             break;
         case "2":
-            mySavedItems[1] = newInput.value;
+            savedEvents[1] = newInput.value;
             break;
         case "3":
-            mySavedItems[2] = newInput.value;
+            savedEvents[2] = newInput.value;
             break;
         case "4":
-            mySavedItems[3] = newInput.value;
+            savedEvents[3] = newInput.value;
             break;
         case "5":
-            mySavedItems[4] = newInput.value;
+            savedEvents[4] = newInput.value;
             break;
         case "6":
-            mySavedItems[5] = newInput.value;
+            savedEvents[5] = newInput.value;
             break;
         case "7":
-            mySavedItems[6] = newInput.value;
+            savedEvents[6] = newInput.value;
             break;
         case "8":
-            mySavedItems[7] = newInput.value;
+            savedEvents[7] = newInput.value;
             break;
         case "9":
-            mySavedItems[8] = newInput.value;
+            savedEvents[8] = newInput.value;
             break;
     }
     //now we want to save it in our local storage
-    localStorage.setItem("savedEvents", JSON.stringify(mySavedItems));
+    localStorage.setItem("mySavedEvents", JSON.stringify(savedEvents));
     //and render it 
     render();
 }
 //this will call all of our time blocks
 allInput = $(".time-block")
-if (!localStorage.getItem("savedEvents")) {
-    var savedEvents = Array(9)
-} else {
-    savedEvents = JSON.parse(localStorage.getItem("savedEvents"))
-}
+console.log(allInput)
+
 function render() {
+
     //lets get our items from the local storage
 
     //for the length of the buttons (all buttons) we will loop here
     for (a = 0; a < allInput.length; a++) {
         //if the cell is null let's make it blank
-        if (savedEvents[a] === null) {
-            savedEvents[a] = ' '
-        }
+        // if (savedEvents[a] === null) {
+        //     savedEvents[a] = ' ';
+        // }
+        console.log(savedEvents[a])
         //and lets put those values in the input boxes
         allInput[a].value = savedEvents[a]
     }
