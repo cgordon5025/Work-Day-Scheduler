@@ -5,13 +5,13 @@ $("#todayDate").text(today.format("dddd, MMMM Do YYYY"));
 //shows what hour we're on  
 //for reasons cannot show AM/PM look for solutions in future
 var currentTime = parseInt(moment().format('H'));
-
+console.log(currentTime)
 //Lets save their input into array of objects so that we can call it using some sort of loop
 var eventInput = document.getElementById("scheduleContainer").querySelectorAll("input");
 var eventTime = document.getElementById("scheduleContainer").querySelectorAll("p")
 for (var x = 0; x < eventTime.length; x++) {
     let blockTime = parseInt(eventTime[x].innerText)
-    if (currentTime <= 12 && blockTime > 7) {
+    if (blockTime > 7) {
         if ((blockTime === currentTime)) {// if the times match change the class to present, so the color will be red
             eventInput[x].classList.add("present");
         } else if
@@ -22,12 +22,12 @@ for (var x = 0; x < eventTime.length; x++) {
         }
     } else if (currentTime <= 12 && blockTime < 6) {
         eventInput[x].classList.add("future");
-    } else if (currentTime > 12) {//if its earlier -12 to accomodate for 24h time
+    } else if (currentTime > 12 && blockTime < 6) {//if its earlier -12 to accomodate for 24h time
         if ((blockTime + 12) === currentTime) {// if the times match change the class to present, so the color will be red
             eventInput[x].classList.add("present");
-        } else if ((blockTime) < currentTime) {
+        } else if ((blockTime + 12) < currentTime) {
             eventInput[x].classList.add("past");
-        } else if ((blockTime) > currentTime) {
+        } else if ((blockTime + 12) > currentTime) {
             eventInput[x].classList.add("future");
         }
     }
@@ -192,35 +192,59 @@ var savedEvent12;
 //I want to be able to save each item and put it in the respective space,way to do it without making code explode?
 //code for playing later
 var saveBtnEl = $("#scheduleContainer")
-saveBtnEl.on("click", "saveBtn", saveEvent)
+saveBtnEl.on("click", "button", saveEvent)
 console.log(saveBtnEl.on("click", "saveBtn", saveEvent))
-
-var mySavedItems = [];
+function test() {
+    console.log("you clicked me")
+}
+var mySavedItems = Array(9);
+console.log(mySavedItems)
 // saveBtnEl.addEventListener("click", saveEvent)
 function saveEvent(event) {
     event.preventDefault()
-    var newInput = event.target().previousSibling
-    currentItem = newInput.value;
-    mySavedItems = {
-        event: newInput.value,
-        event: newInput.value,
-        event: newInput.value,
-        event: newInput.value,
-        event: newInput.value,
-        event: newInput.value,
-        event: newInput.value,
-        event: newInput.value,
-        event: newInput.value
+    var newInput = event.target.previousElementSibling
+    console.log(newInput.value)
+    console.log(typeof newInput.dataset.num)
+    switch (newInput.dataset.num) {
+        case "1":
+            mySavedItems[0] = newInput.value;
+            break;
+        case "2":
+            mySavedItems[1] = newInput.value;
+            break;
+        case "3":
+            mySavedItems[2] = newInput.value;
+            break;
+        case "4":
+            mySavedItems[3] = newInput.value;
+            break;
+        case "5":
+            mySavedItems[4] = newInput.value;
+            break;
+        case "6":
+            mySavedItems[5] = newInput.value;
+            break;
+        case "7":
+            mySavedItems[6] = newInput.value;
+            break;
+        case "8":
+            mySavedItems[7] = newInput.value;
+            break;
+        case "9":
+            mySavedItems[8] = newInput.value;
+            break;
     }
     localStorage.setItem("savedEvents", JSON.stringify(mySavedItems));
     render();
-
 }
 allInput = $(".time-block")
-console.log(allInput)
-savedEvents = JSON.parse(localStorage.getItem("savedEvents"))
 function render() {
+    savedEvents = JSON.parse(localStorage.getItem("savedEvents"))
     for (a = 0; a < allInput.length; a++) {
-        allInput[a].value = savedEvents[a].event
+        if (savedEvents[a] === null) {
+            savedEvents[a] = ' '
+        }
+        console.log(savedEvents)
+        allInput[a].value = savedEvents[a]
     }
 }
