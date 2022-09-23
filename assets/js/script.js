@@ -81,9 +81,14 @@ function saveEvent(event) {
 }
 //this will call all of our time blocks
 allInput = $(".time-block")
+if (!localStorage.getItem("savedEvents")) {
+    var savedEvents = Array(9)
+} else {
+    savedEvents = JSON.parse(localStorage.getItem("savedEvents"))
+}
 function render() {
     //lets get our items from the local storage
-    savedEvents = JSON.parse(localStorage.getItem("savedEvents"))
+
     //for the length of the buttons (all buttons) we will loop here
     for (a = 0; a < allInput.length; a++) {
         //if the cell is null let's make it blank
