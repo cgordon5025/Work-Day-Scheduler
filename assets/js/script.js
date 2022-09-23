@@ -11,12 +11,23 @@ var eventInput = document.getElementById("scheduleContainer").querySelectorAll("
 var eventTime = document.getElementById("scheduleContainer").querySelectorAll("p")
 for (var x = 0; x < eventTime.length; x++) {
     let blockTime = parseInt(eventTime[x].innerText)
-    if ((blockTime === currentTime) || ((blockTime + 12) === currentTime)) {// if the times match change the class to present, so the color will be red
-        eventInput[x].classList.add("present");
-    } if (currentTime > 12) {//if its earlier -12 to accomodate for 24h time
-        if (blockTime < currentTime) {
+    if (currentTime <= 12 && blockTime > 7) {
+        if ((blockTime === currentTime)) {// if the times match change the class to present, so the color will be red
+            eventInput[x].classList.add("present");
+        } else if
+            (blockTime < currentTime) {
             eventInput[x].classList.add("past");
-        } else if (blockTime > currentTime) {
+        } else if ((blockTime > currentTime)) {
+            eventInput[x].classList.add("future");
+        }
+    } else if (currentTime <= 12 && blockTime < 6) {
+        eventInput[x].classList.add("future");
+    } else if (currentTime > 12) {//if its earlier -12 to accomodate for 24h time
+        if ((blockTime + 12) === currentTime) {// if the times match change the class to present, so the color will be red
+            eventInput[x].classList.add("present");
+        } else if ((blockTime) < currentTime) {
+            eventInput[x].classList.add("past");
+        } else if ((blockTime) > currentTime) {
             eventInput[x].classList.add("future");
         }
     }
@@ -62,128 +73,154 @@ var savedEvent11;
 var currentItem12;
 var savedEvent12;
 //lets set the event listeners 
-saveBtn1.addEventListener("click", SaveEvent1);
-saveBtn2.addEventListener("click", SaveEvent2);
-saveBtn3.addEventListener("click", SaveEvent3);
-saveBtn4.addEventListener("click", SaveEvent4);
-saveBtn5.addEventListener("click", SaveEvent5);
-saveBtn9.addEventListener("click", SaveEvent9);
-saveBtn10.addEventListener("click", SaveEvent10);
-saveBtn11.addEventListener("click", SaveEvent11);
-saveBtn12.addEventListener("click", SaveEvent12);
+// saveBtn1.addEventListener("click", SaveEvent1);
+// saveBtn2.addEventListener("click", SaveEvent2);
+// saveBtn3.addEventListener("click", SaveEvent3);
+// saveBtn4.addEventListener("click", SaveEvent4);
+// saveBtn5.addEventListener("click", SaveEvent5);
+// saveBtn9.addEventListener("click", SaveEvent9);
+// saveBtn10.addEventListener("click", SaveEvent10);
+// saveBtn11.addEventListener("click", SaveEvent11);
+// saveBtn12.addEventListener("click", SaveEvent12);
 
-function SaveEvent1(event) {
-    event.preventDefault();
-    currentItem1 = inputEl1.value;
-    console.log(currentItem1);
-    localStorage.setItem("myEvent1", JSON.stringify(currentItem1));
-    renderEvent1();
-}
-function SaveEvent2(event) {
-    event.preventDefault();
-    currentItem2 = inputEl2.value;
-    console.log(currentItem2);
-    localStorage.setItem("myEvent2", JSON.stringify(currentItem2));
-    renderEvent2();
-}
-function SaveEvent3(event) {
-    event.preventDefault();
-    currentItem3 = inputEl3.value;
-    console.log(currentItem3);
-    localStorage.setItem("myEvent3", JSON.stringify(currentItem3));
-    renderEvent3();
-}
-function SaveEvent4(event) {
-    event.preventDefault();
-    currentItem4 = inputEl4.value;
-    console.log(currentItem4);
-    localStorage.setItem("myEvent4", JSON.stringify(currentItem4));
-    renderEvent4();
-}
-function SaveEvent5(event) {
-    event.preventDefault();
-    currentItem5 = inputEl5.value;
-    console.log(currentItem5);
-    localStorage.setItem("myEvent5", JSON.stringify(currentItem5));
-    renderEvent5();
-}
-function SaveEvent9(event) {
-    event.preventDefault();
-    currentItem9 = inputEl9.value;
-    console.log(currentItem9);
-    localStorage.setItem("myEvent9", JSON.stringify(currentItem9));
-    renderEvent9();
-}
-function SaveEvent10(event) {
-    event.preventDefault();
-    currentItem10 = inputEl10.value;
-    console.log(currentItem10);
-    localStorage.setItem("myEvent10", JSON.stringify(currentItem10));
-    renderEvent10();
-}
-function SaveEvent11(event) {
-    event.preventDefault();
-    currentItem11 = inputEl11.value;
-    console.log(currentItem11);
-    localStorage.setItem("myEvent11", JSON.stringify(currentItem11));
-    renderEvent11();
-}
-function SaveEvent12(event) {
-    event.preventDefault();
-    currentItem12 = inputEl12.value;
-    console.log(currentItem12);
-    localStorage.setItem("myEvent12", JSON.stringify(currentItem12));
-    renderEvent12();
-}
+// function SaveEvent1(event) {
+//     event.preventDefault();
+//     currentItem1 = inputEl1.value;
+//     console.log(currentItem1);
+//     localStorage.setItem("myEvent1", JSON.stringify(currentItem1));
+//     renderEvent();
+// }
+// function SaveEvent2(event) {
+//     event.preventDefault();
+//     currentItem2 = inputEl2.value;
+//     console.log(currentItem2);
+//     localStorage.setItem("myEvent2", JSON.stringify(currentItem2));
+//     renderEvent();
+// }
+// function SaveEvent3(event) {
+//     event.preventDefault();
+//     currentItem3 = inputEl3.value;
+//     console.log(currentItem3);
+//     localStorage.setItem("myEvent3", JSON.stringify(currentItem3));
+//     renderEvent();
+// }
+// function SaveEvent4(event) {
+//     event.preventDefault();
+//     currentItem4 = inputEl4.value;
+//     console.log(currentItem4);
+//     localStorage.setItem("myEvent4", JSON.stringify(currentItem4));
+//     renderEvent();
+// }
+// function SaveEvent5(event) {
+//     event.preventDefault();
+//     currentItem5 = inputEl5.value;
+//     console.log(currentItem5);
+//     localStorage.setItem("myEvent5", JSON.stringify(currentItem5));
+//     renderEvent();
+// }
+// function SaveEvent9(event) {
+//     event.preventDefault();
+//     currentItem9 = inputEl9.value;
+//     console.log(currentItem9);
+//     localStorage.setItem("myEvent9", JSON.stringify(currentItem9));
+//     renderEvent();
+// }
+// function SaveEvent10(event) {
+//     event.preventDefault();
+//     currentItem10 = inputEl10.value;
+//     console.log(currentItem10);
+//     localStorage.setItem("myEvent10", JSON.stringify(currentItem10));
+//     renderEvent();
+// }
+// function SaveEvent11(event) {
+//     event.preventDefault();
+//     currentItem11 = inputEl11.value;
+//     console.log(currentItem11);
+//     localStorage.setItem("myEvent11", JSON.stringify(currentItem11));
+//     renderEvent();
+// }
+// function SaveEvent12(event) {
+//     event.preventDefault();
+//     currentItem12 = inputEl12.value;
+//     console.log(currentItem12);
+//     localStorage.setItem("myEvent12", JSON.stringify(currentItem12));
+//     renderEvent();
+// }
 
-//lets render the events
-function renderEvent() {
-    if (!localStorage.getItem("myEvent1")) {
-        savedEvent1 = '';
-    } else { savedEvent1 = JSON.parse(localStorage.getItem("myEvent1")) }
-    inputEl1.value = savedEvent1;
-    if (!localStorage.getItem("myEvent2")) {
-        savedEvent2 = '';
-    } else { savedEvent2 = JSON.parse(localStorage.getItem("myEvent2")) }
-    inputEl2.value = savedEvent2;
-    if (!localStorage.getItem("myEvent3")) {
-        savedEvent3 = '';
-    } else { savedEvent3 = JSON.parse(localStorage.getItem("myEvent3")) }
-    inputEl3.value = savedEvent3;
-    if (!localStorage.getItem("myEvent4")) {
-        savedEvent4 = '';
-    } else { savedEvent4 = JSON.parse(localStorage.getItem("myEvent4")) }
-    inputEl4.value = savedEvent4;
-    if (!localStorage.getItem("myEvent5")) {
-        savedEvent5 = '';
-    } else { savedEvent5 = JSON.parse(localStorage.getItem("myEvent5")) }
-    inputEl5.value = savedEvent5;
-    if (!localStorage.getItem("myEvent9")) {
-        savedEvent9 = '';
-    } else { savedEvent9 = JSON.parse(localStorage.getItem("myEvent9")) }
-    inputEl9.value = savedEvent9;
-    if (!localStorage.getItem("myEvent10")) {
-        savedEvent10 = '';
-    } else { savedEvent10 = JSON.parse(localStorage.getItem("myEvent10")) }
-    inputEl10.value = savedEvent10;
-    if (!localStorage.getItem("myEvent11")) {
-        savedEvent11 = '';
-    } else { savedEvent11 = JSON.parse(localStorage.getItem("myEvent11")) }
-    inputEl11.value = savedEvent11;
-    if (!localStorage.getItem("myEvent12")) {
-        savedEvent12 = '';
-    } else { savedEvent12 = JSON.parse(localStorage.getItem("myEvent12")) }
-    inputEl12.value = savedEvent12;
-}
-//we want this to show at all times
-renderEvent()
+// //lets render the events
+// function renderEvent() {
+//     if (!localStorage.getItem("myEvent1")) {
+//         savedEvent1 = '';
+//     } else { savedEvent1 = JSON.parse(localStorage.getItem("myEvent1")) }
+//     inputEl1.value = savedEvent1;
+//     if (!localStorage.getItem("myEvent2")) {
+//         savedEvent2 = '';
+//     } else { savedEvent2 = JSON.parse(localStorage.getItem("myEvent2")) }
+//     inputEl2.value = savedEvent2;
+//     if (!localStorage.getItem("myEvent3")) {
+//         savedEvent3 = '';
+//     } else { savedEvent3 = JSON.parse(localStorage.getItem("myEvent3")) }
+//     inputEl3.value = savedEvent3;
+//     if (!localStorage.getItem("myEvent4")) {
+//         savedEvent4 = '';
+//     } else { savedEvent4 = JSON.parse(localStorage.getItem("myEvent4")) }
+//     inputEl4.value = savedEvent4;
+//     if (!localStorage.getItem("myEvent5")) {
+//         savedEvent5 = '';
+//     } else { savedEvent5 = JSON.parse(localStorage.getItem("myEvent5")) }
+//     inputEl5.value = savedEvent5;
+//     if (!localStorage.getItem("myEvent9")) {
+//         savedEvent9 = '';
+//     } else { savedEvent9 = JSON.parse(localStorage.getItem("myEvent9")) }
+//     inputEl9.value = savedEvent9;
+//     if (!localStorage.getItem("myEvent10")) {
+//         savedEvent10 = '';
+//     } else { savedEvent10 = JSON.parse(localStorage.getItem("myEvent10")) }
+//     inputEl10.value = savedEvent10;
+//     if (!localStorage.getItem("myEvent11")) {
+//         savedEvent11 = '';
+//     } else { savedEvent11 = JSON.parse(localStorage.getItem("myEvent11")) }
+//     inputEl11.value = savedEvent11;
+//     if (!localStorage.getItem("myEvent12")) {
+//         savedEvent12 = '';
+//     } else { savedEvent12 = JSON.parse(localStorage.getItem("myEvent12")) }
+//     inputEl12.value = savedEvent12;
+// }
+// //we want this to show at all times
+// renderEvent()
 
 //I want to be able to save each item and put it in the respective space,way to do it without making code explode?
 //code for playing later
-// var saveBtn = document.querySelectorAll("button")
-// function saveEvent(event) {
-//     event.preventDefault()
-//     for (var a = 0; a < saveBtn.length; a++) {
+var saveBtnEl = $("#scheduleContainer")
+saveBtnEl.on("click", "saveBtn", saveEvent)
+console.log(saveBtnEl.on("click", "saveBtn", saveEvent))
 
-//     }
-// }
+var mySavedItems = [];
+// saveBtnEl.addEventListener("click", saveEvent)
+function saveEvent(event) {
+    event.preventDefault()
+    var newInput = event.target().previousSibling
+    currentItem = newInput.value;
+    mySavedItems = {
+        event: newInput.value,
+        event: newInput.value,
+        event: newInput.value,
+        event: newInput.value,
+        event: newInput.value,
+        event: newInput.value,
+        event: newInput.value,
+        event: newInput.value,
+        event: newInput.value
+    }
+    localStorage.setItem("savedEvents", JSON.stringify(mySavedItems));
+    render();
+
+}
+allInput = $(".time-block")
+console.log(allInput)
+savedEvents = JSON.parse(localStorage.getItem("savedEvents"))
+function render() {
+    for (a = 0; a < allInput.length; a++) {
+        allInput[a].value = savedEvents[a].event
+    }
+}
