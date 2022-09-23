@@ -5,7 +5,6 @@ $("#todayDate").text(today.format("dddd, MMMM Do YYYY"));
 //shows what hour we're on  
 //for reasons cannot show AM/PM look for solutions in future
 var currentTime = parseInt(moment().format('H'));
-console.log(currentTime)
 //Lets save their input into array of objects so that we can call it using some sort of loop
 var eventInput = document.getElementById("scheduleContainer").querySelectorAll("input");
 var eventTime = document.getElementById("scheduleContainer").querySelectorAll("p")
