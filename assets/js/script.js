@@ -4,27 +4,22 @@ $("#todayDate").text(today.format("dddd, MMMM Do YYYY"));
 
 //shows what hour we're on  
 //for reasons cannot show AM/PM look for solutions in future
-var currentTime = (moment().format('hA'));
-console.log(currentTime)
+var currentTime = (moment().format('HA'));
 
 //Lets save their input into array of objects so that we can call it using some sort of loop
 var eventInput = document.getElementById("scheduleContainer").querySelectorAll("input");
 var eventTime = document.getElementById("scheduleContainer").querySelectorAll("p")
-//this is how I call it down
-// console.log(eventTime[0].innerText)
-
 for (var x = 0; x < eventTime.length; x++) {
-    let blockTime = (eventTime[x].innerText)
-    console.log(blockTime)
-    console.log(blockTime === currentTime)
-    console.log(blockTime < currentTime - 12)
-    console.log(blockTime > (currentTime - 12))
-    if (blockTime === currentTime) {// if the times match change the class to present, so the color will be red
+    let blockTime = parseInt(eventTime[x].innerText)
+
+    if ((blockTime === currentTime) || ((blockTime + 12) === currentTime)) {// if the times match change the class to present, so the color will be red
         eventInput[x].classList.add("present");
-    } else if (blockTime < currentTime) { //if its earlier -12 to accomodate for 24h time
-        eventInput[x].classList.add("past");
-    } else if (blockTime > currentTime) {
-        eventInput[x].classList.add("future");
+    } if (currentTime > 12) {//if its earlier -12 to accomodate for 24h time
+        if (blockTime < currentTime) {
+            eventInput[x].classList.add("past");
+        } else if (blockTime > currentTime) {
+            eventInput[x].classList.add("future");
+        }
     }
 }
 //lets call the save buttons
@@ -143,67 +138,47 @@ function SaveEvent12(event) {
 }
 
 //lets render the events
-function renderEvent1() {
+function renderEvent() {
     if (!localStorage.getItem("myEvent1")) {
         savedEvent1 = '';
     } else { savedEvent1 = JSON.parse(localStorage.getItem("myEvent1")) }
     inputEl1.value = savedEvent1;
-}
-function renderEvent2() {
     if (!localStorage.getItem("myEvent2")) {
         savedEvent2 = '';
     } else { savedEvent2 = JSON.parse(localStorage.getItem("myEvent2")) }
     inputEl2.value = savedEvent2;
-}
-function renderEvent3() {
     if (!localStorage.getItem("myEvent3")) {
         savedEvent3 = '';
     } else { savedEvent3 = JSON.parse(localStorage.getItem("myEvent3")) }
     inputEl3.value = savedEvent3;
-}
-function renderEvent4() {
     if (!localStorage.getItem("myEvent4")) {
         savedEvent4 = '';
     } else { savedEvent4 = JSON.parse(localStorage.getItem("myEvent4")) }
     inputEl4.value = savedEvent4;
-}
-function renderEvent5() {
     if (!localStorage.getItem("myEvent5")) {
         savedEvent5 = '';
     } else { savedEvent5 = JSON.parse(localStorage.getItem("myEvent5")) }
     inputEl5.value = savedEvent5;
-}
-function renderEvent9() {
     if (!localStorage.getItem("myEvent9")) {
         savedEvent9 = '';
-    } else { savedEvent9 = JSON.parse(localStorage.getItem("myEvent9")) } inputEl9.value = savedEvent9;
-}
-function renderEvent10() {
+    } else { savedEvent9 = JSON.parse(localStorage.getItem("myEvent9")) }
+    inputEl9.value = savedEvent9;
     if (!localStorage.getItem("myEvent10")) {
         savedEvent10 = '';
-    } else { savedEvent10 = JSON.parse(localStorage.getItem("myEvent10")) } inputEl10.value = savedEvent10;
-}
-function renderEvent11() {
+    } else { savedEvent10 = JSON.parse(localStorage.getItem("myEvent10")) }
+    inputEl10.value = savedEvent10;
     if (!localStorage.getItem("myEvent11")) {
         savedEvent11 = '';
-    } else { savedEvent11 = JSON.parse(localStorage.getItem("myEvent11")) } inputEl11.value = savedEvent11;
-}
-function renderEvent12() {
+    } else { savedEvent11 = JSON.parse(localStorage.getItem("myEvent11")) }
+    inputEl11.value = savedEvent11;
     if (!localStorage.getItem("myEvent12")) {
         savedEvent12 = '';
     } else { savedEvent12 = JSON.parse(localStorage.getItem("myEvent12")) }
     inputEl12.value = savedEvent12;
 }
 //we want this to show at all times
-renderEvent1()
-renderEvent2()
-renderEvent3()
-renderEvent4()
-renderEvent5()
-renderEvent9()
-renderEvent10()
-renderEvent11()
-renderEvent12()
+renderEvent()
+
 //I want to be able to save each item and put it in the respective space,way to do it without making code explode?
 //code for playing later
 // var saveBtn = document.querySelectorAll("button")
