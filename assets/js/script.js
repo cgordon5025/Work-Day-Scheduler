@@ -4,14 +4,13 @@ $("#todayDate").text(today.format("dddd, MMMM Do YYYY"));
 
 //shows what hour we're on  
 //for reasons cannot show AM/PM look for solutions in future
-var currentTime = (moment().format('HA'));
+var currentTime = parseInt(moment().format('H'));
 
 //Lets save their input into array of objects so that we can call it using some sort of loop
 var eventInput = document.getElementById("scheduleContainer").querySelectorAll("input");
 var eventTime = document.getElementById("scheduleContainer").querySelectorAll("p")
 for (var x = 0; x < eventTime.length; x++) {
     let blockTime = parseInt(eventTime[x].innerText)
-
     if ((blockTime === currentTime) || ((blockTime + 12) === currentTime)) {// if the times match change the class to present, so the color will be red
         eventInput[x].classList.add("present");
     } if (currentTime > 12) {//if its earlier -12 to accomodate for 24h time
